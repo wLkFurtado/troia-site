@@ -256,7 +256,7 @@ const HappyHour = () => {
         <div className="w-full lg:w-1/2">
           <div className="flex items-center gap-3 mb-6 hh-reveal transform translate-y-10 opacity-0">
             <Wine className="text-amber-400" size={24} />
-            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Todo o final de tarde</span>
+            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Segunda a Sexta</span>
           </div>
           <h2 className="text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none hh-reveal transform translate-y-10 opacity-0">
             Golden <span className="text-amber-400">Hour.</span>
@@ -272,11 +272,14 @@ const HappyHour = () => {
               </div>
               <div>
                 <p className="text-zinc-500 text-sm mb-1">Dias</p>
-                <p className="text-xl font-bold text-white">Dom. a Dom.</p>
+                <p className="text-xl font-bold text-white">Seg. a Sex.</p>
               </div>
             </div>
             <div className="mt-6 pt-6 border-t border-zinc-800">
-              <p className="text-zinc-300">Dose dupla de cerveja e descontos exclusivos nas entradas do Chef no Térreo.</p>
+              <p className="text-zinc-300 font-medium text-lg mb-2">50% de desconto em todas as bebidas alcoólicas.</p>
+              <p className="text-sm text-zinc-500 leading-relaxed font-mono">
+                *Exceto combos, garrafas de whisky Blue Label, garrafas de Royal Salute e carta de vinhos.
+              </p>
             </div>
           </div>
         </div>
