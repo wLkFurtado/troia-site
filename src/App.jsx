@@ -33,6 +33,8 @@ const SplitText = ({ text, className = '', wordClass = 'split-word' }) => (
 // --- NAVBAR ---
 const Navbar = () => {
   const navRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const el = navRef.current;
     if (!el) return;
@@ -47,20 +49,56 @@ const Navbar = () => {
     return () => ctx.revert();
   }, []);
 
+  const links = [
+    { href: '#espacos', label: 'Espaços' },
+    { href: '#eventos', label: 'Eventos' },
+    { href: '#reservas', label: 'Reservas' },
+    { href: '#cardapio', label: 'Cardápio' },
+    { href: 'https://lista.troiacabofrio.com.br', label: 'Lista VIP', external: true },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center mt-4 px-4">
-      <div ref={navRef} className="flex items-center justify-between w-full max-w-5xl rounded-full border border-white/10 px-8 py-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center mt-4 px-4">
+      <div ref={navRef} className="flex items-center justify-between w-full max-w-5xl rounded-full border border-white/10 px-6 py-3 md:px-8 md:py-4">
         <span className="text-xl font-drama font-bold tracking-widest uppercase">Tróia</span>
+        {/* Desktop menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide text-zinc-300">
-          <a href="#espacos" className="hover:text-amber-400 transition-colors">Espaços</a>
-          <a href="#eventos" className="hover:text-amber-400 transition-colors">Eventos</a>
-          <a href="#reservas" className="hover:text-amber-400 transition-colors">Reservas</a>
-          <a href="https://lista.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">Lista VIP</a>
+          {links.map(l => (
+            <a key={l.label} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noreferrer' : undefined} className="hover:text-amber-400 transition-colors">{l.label}</a>
+          ))}
         </div>
         <a href="#reservas" className="rounded-full border border-amber-400/40 text-amber-400 px-6 py-2.5 text-sm font-medium hidden md:block hover:bg-amber-400 hover:text-zinc-950 transition-all duration-300">
           Reservas
         </a>
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Menu"
+        >
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        </button>
       </div>
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <div className="md:hidden w-full max-w-5xl mt-2 bg-zinc-950/95 backdrop-blur-xl rounded-3xl border border-zinc-800 px-6 py-6 flex flex-col gap-5">
+          {links.map(l => (
+            <a
+              key={l.label}
+              href={l.href}
+              target={l.external ? '_blank' : undefined}
+              rel={l.external ? 'noreferrer' : undefined}
+              className="text-lg font-medium text-zinc-200 hover:text-amber-400 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >{l.label}</a>
+          ))}
+          <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="mt-2 block text-center bg-amber-400 text-zinc-950 px-6 py-3 rounded-full font-bold hover:bg-white transition-all duration-300">
+            Fazer Reserva
+          </a>
+        </div>
+      )}
     </nav>
   );
 };
@@ -78,7 +116,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={ref} className="relative h-[100dvh] w-full flex flex-col justify-end pb-24 px-6 md:px-12 lg:px-24">
+    <section ref={ref} className="relative h-[100dvh] w-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-12 lg:px-24">
       <div className="absolute inset-0 z-0">
         <img
           src="/hero.jpeg"
@@ -88,25 +126,25 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent" />
       </div>
       <div className="relative z-10 max-w-4xl">
-        <h1 className="flex flex-col gap-3 mb-8">
+        <h1 className="flex flex-col gap-2 mb-6">
           <SplitText
             text="A NOITE ELEVADA."
-            className="text-2xl md:text-4xl font-sans font-bold text-amber-400 tracking-[0.3em]"
+            className="text-lg md:text-4xl font-sans font-bold text-amber-400 tracking-[0.2em] md:tracking-[0.3em]"
             wordClass="hero-word"
           />
           <SplitText
             text="Viva a experiência Tróia."
-            className="text-5xl md:text-8xl font-drama italic leading-[0.9]"
+            className="text-4xl md:text-8xl font-drama italic leading-[0.9]"
             wordClass="hero-word"
           />
         </h1>
-        <p className="hero-sub max-w-xl text-lg text-zinc-400 font-light mb-10 leading-relaxed opacity-0">
+        <p className="hero-sub max-w-xl text-base md:text-lg text-zinc-400 font-light mb-8 leading-relaxed opacity-0">
           Bar, Restaurante e o Rooftop mais exclusivo de Cabo Frio. Gastronomia, coquetelaria e energia em um só lugar.
         </p>
         <div className="hero-cta opacity-0">
           <a
             href="#espacos"
-            className="inline-flex items-center gap-2 bg-amber-400 text-zinc-950 px-8 py-4 rounded-full font-semibold tracking-wide hover:bg-white transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-amber-400 text-zinc-950 px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold tracking-wide hover:bg-white transition-all duration-300 text-sm md:text-base"
           >
             Descubra os Espaços <ChevronRight size={18} />
           </a>
@@ -132,7 +170,7 @@ const Features = () => {
     return () => clearInterval(t);
   }, [cards.length]);
 
-  const feed = ' > ROOFTOP VIP ACESSO...\n > MULHERES VIP | HOMENS R$ 30...\n > PROGRAMAÇÃO NOS STORIES...\n > SISTEMA OPERACIONAL...\n';
+  const feed = ' > ROOFTOP VIP ACESSO...\\n > MULHERES VIP | HOMENS R$ 30...\\n > PROGRAMAÇÃO NOS STORIES...\\n';
   useEffect(() => {
     let i = 0;
     const t = setInterval(() => {
@@ -146,8 +184,8 @@ const Features = () => {
   const today = new Date().getDay();
 
   return (
-    <section id="espacos" className="py-32 px-6 md:px-12 lg:px-24 bg-zinc-950">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <section id="espacos" className="py-16 md:py-32 px-4 md:px-12 lg:px-24 bg-zinc-950">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Card 1: Shuffler */}
         <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-8 h-[420px] flex flex-col">
@@ -251,15 +289,15 @@ const HappyHour = () => {
   }, []);
 
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 lg:px-24 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
+    <section ref={ref} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
       <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-amber-900/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
-      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-10 md:gap-16 relative z-10">
         <div className="w-full lg:w-1/2">
           <div className="flex items-center gap-3 mb-6 hh-reveal transform translate-y-10 opacity-0">
             <Wine className="text-amber-400" size={24} />
             <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Segunda a Sexta</span>
           </div>
-          <h2 className="text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none hh-reveal transform translate-y-10 opacity-0">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none hh-reveal transform translate-y-10 opacity-0">
             Golden <span className="text-amber-400">Hour.</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed hh-reveal transform translate-y-10 opacity-0">
@@ -278,7 +316,7 @@ const HappyHour = () => {
             </div>
             <div className="mt-6 pt-6 border-t border-zinc-800">
               <p className="text-zinc-300 font-medium text-lg mb-2">50% de desconto em todas as bebidas alcoólicas.</p>
-              <p className="text-sm text-zinc-500 leading-relaxed font-mono">
+              <p className="text-sm text-zinc-400 leading-relaxed font-mono">
                 *Exceto combos, garrafas de whisky Blue Label, garrafas de Royal Salute e carta de vinhos.
               </p>
             </div>
@@ -319,9 +357,9 @@ const PromoOfTheWeek = () => {
   }, []);
 
   return (
-    <section ref={ref} className="py-24 px-6 bg-zinc-950 border-t border-zinc-900 overflow-hidden relative">
+    <section ref={ref} className="py-16 md:py-24 px-4 md:px-6 bg-zinc-950 border-t border-zinc-900 overflow-hidden relative">
       <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-red-900/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 md:gap-16 relative z-10">
         <div className="w-full lg:w-1/2 promo-reveal transform translate-y-10 opacity-0">
           <div className="relative aspect-square md:aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 shadow-2xl">
             <img 
@@ -342,7 +380,7 @@ const PromoOfTheWeek = () => {
             <ChefHat className="text-amber-400" size={24} />
             <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Especial do Chef</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-drama italic text-white mb-6 leading-none promo-reveal transform translate-y-10 opacity-0">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-drama italic text-white mb-6 leading-none promo-reveal transform translate-y-10 opacity-0">
             O Baratíssimo da Semana
           </h2>
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed promo-reveal transform translate-y-10 opacity-0">
@@ -385,7 +423,7 @@ const Philosophy = () => {
   }, []);
 
   return (
-    <section className="relative py-40 px-6 overflow-hidden border-y border-zinc-900">
+    <section className="relative py-24 md:py-40 px-6 overflow-hidden border-y border-zinc-900">
       <div className="absolute inset-0 opacity-[0.15]">
         <img
           src="/ambiente.jpeg"
@@ -398,7 +436,7 @@ const Philosophy = () => {
         <p className="text-xl text-zinc-500 font-light mb-10 max-w-2xl mx-auto">
           <SplitText text="A maioria das noites foca em: apenas entretenimento momentâneo." wordClass="phil-word" />
         </p>
-        <p className="text-4xl md:text-6xl lg:text-7xl leading-tight">
+        <p className="text-2xl md:text-4xl md:text-6xl lg:text-7xl leading-tight">
           <SplitText text="Nós focamos em:" className="font-sans font-bold block mb-4" wordClass="phil-word" />
           <SplitText text="uma experiência sensorial completa." className="font-drama italic text-amber-400" wordClass="phil-word" />
         </p>
@@ -486,9 +524,9 @@ const BoateRooftop = () => {
   }, []);
 
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 lg:px-24 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
+    <section ref={ref} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
       <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 md:gap-16 relative z-10">
         <div className="w-full lg:w-1/2 roof-reveal transform translate-y-10 opacity-0">
           <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 shadow-2xl">
             <img 
@@ -509,7 +547,7 @@ const BoateRooftop = () => {
             <Sparkles className="text-amber-400" size={24} />
             <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Boate & Lounge</span>
           </div>
-          <h2 className="text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none roof-reveal transform translate-y-10 opacity-0">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none roof-reveal transform translate-y-10 opacity-0">
             Rooftop <span className="text-amber-400">Tróia.</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed roof-reveal transform translate-y-10 opacity-0">
@@ -536,10 +574,10 @@ const BoateRooftop = () => {
 
 // --- PRICING ---
 const Pricing = () => (
-  <section id="reservas" className="py-32 px-6">
+  <section id="reservas" className="py-16 md:py-32 px-4 md:px-6">
     <div className="max-w-6xl mx-auto">
-      <div className="text-center mb-20">
-        <h2 className="text-5xl font-drama italic text-amber-400 mb-3">Aniversários & Reservas</h2>
+      <div className="text-center mb-10 md:mb-20">
+        <h2 className="text-4xl md:text-5xl font-drama italic text-amber-400 mb-3">Aniversários &amp; Reservas</h2>
         <p className="text-zinc-500">Viva o momento no lugar certo.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -596,6 +634,74 @@ const Pricing = () => (
   </section>
 );
 
+// --- CARDÁPIO ---
+const Cardapio = () => {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: ref.current,
+        start: 'top 75%',
+        onEnter: () => gsap.to('.menu-reveal', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' }),
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="cardapio" ref={ref} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
+      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-amber-900/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-10 md:gap-16 relative z-10">
+        <div className="w-full lg:w-1/2 menu-reveal transform translate-y-10 opacity-0">
+          <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 shadow-2xl">
+            <img 
+              src="/ambiente.jpeg" 
+              alt="Gastronomia Tróia" 
+              className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+            <div className="absolute top-6 left-6">
+              <span className="bg-zinc-950/80 backdrop-blur-md text-amber-400 border border-amber-400/30 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest inline-block">
+                Menu Assinatura
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="w-full lg:w-1/2">
+          <div className="flex items-center gap-3 mb-6 menu-reveal transform translate-y-10 opacity-0">
+            <ChefHat className="text-amber-400" size={24} />
+            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Gastronomia & Drinks</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none menu-reveal transform translate-y-10 opacity-0">
+            Nosso <span className="text-amber-400">Cardápio.</span>
+          </h2>
+          <p className="text-zinc-400 text-lg mb-8 leading-relaxed menu-reveal transform translate-y-10 opacity-0">
+            Descubra uma curadoria gastronômica pensada para elevar sua experiência. De cortes nobres a tapas exclusivas, harmonizados perfeitamente com nossa alta coquetelaria autoral.
+          </p>
+          <div className="bg-zinc-900/50 border border-zinc-700/50 rounded-2xl p-6 mb-8 menu-reveal transform translate-y-10 opacity-0">
+             <h4 className="font-bold text-white mb-4">Experiência Sensorial</h4>
+            <ul className="space-y-4 text-zinc-300">
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Entradas e Tapas para compartilhar.</li>
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Pratos com a assinatura do nosso Chef.</li>
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Drinks clássicos e criações exclusivas Tróia.</li>
+            </ul>
+          </div>
+          <div className="menu-reveal transform translate-y-10 opacity-0">
+            <a 
+              href="https://xqoxodcvbdlfquwodujr.supabase.co/storage/v1/object/public/imagens/cardapio.pdf" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="inline-flex items-center justify-center bg-amber-400 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 w-full sm:w-auto"
+            >
+              Acessar Cardápio em PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- FOOTER ---
 const Footer = () => (
   <footer className="bg-[#050505] pt-20 pb-10 px-6 rounded-t-[4rem] border-t border-zinc-900">
@@ -604,10 +710,7 @@ const Footer = () => (
         <h2 className="text-3xl font-drama tracking-widest uppercase mb-4">Tróia</h2>
         <p className="text-zinc-500 mb-3">Bar · Lounge · Rooftop</p>
         <p className="text-zinc-600 text-sm max-w-sm mb-8">A experiência definitiva em Cabo Frio. Onde a gastronomia encontra a energia da noite.</p>
-        <div className="flex items-center gap-3 bg-zinc-900/50 border border-zinc-800 px-4 py-2 rounded-full w-fit">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-mono text-xs text-zinc-400">SISTEMA_OPERACIONAL</span>
-        </div>
+
       </div>
       <div>
         <h4 className="font-bold text-white mb-6">Informações</h4>
@@ -646,6 +749,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <Features />
+      <Cardapio />
       <HappyHour />
       <PromoOfTheWeek />
       <Philosophy />
