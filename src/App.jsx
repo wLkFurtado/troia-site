@@ -55,6 +55,7 @@ const Navbar = () => {
           <a href="#espacos" className="hover:text-amber-400 transition-colors">Espaços</a>
           <a href="#eventos" className="hover:text-amber-400 transition-colors">Eventos</a>
           <a href="#reservas" className="hover:text-amber-400 transition-colors">Reservas</a>
+          <a href="https://lista.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">Lista VIP</a>
         </div>
         <a href="#reservas" className="rounded-full border border-amber-400/40 text-amber-400 px-6 py-2.5 text-sm font-medium hidden md:block hover:bg-amber-400 hover:text-zinc-950 transition-all duration-300">
           Reservas
@@ -470,6 +471,69 @@ const Protocol = () => {
   );
 };
 
+// --- BOATE ROOFTOP ---
+const BoateRooftop = () => {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: ref.current,
+        start: 'top 75%',
+        onEnter: () => gsap.to('.roof-reveal', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' }),
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={ref} className="py-24 px-6 md:px-12 lg:px-24 bg-zinc-950 overflow-hidden relative border-t border-zinc-900">
+      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+        <div className="w-full lg:w-1/2 roof-reveal transform translate-y-10 opacity-0">
+          <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 shadow-2xl">
+            <img 
+              src="/rooftop.jpeg" 
+              alt="Troia Rooftop Boate" 
+              className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6">
+              <span className="bg-zinc-950/80 backdrop-blur-md text-amber-400 border border-amber-400/30 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest inline-block">
+                O Ápice da Noite
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="w-full lg:w-1/2">
+          <div className="flex items-center gap-3 mb-6 roof-reveal transform translate-y-10 opacity-0">
+            <Sparkles className="text-amber-400" size={24} />
+            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Boate & Lounge</span>
+          </div>
+          <h2 className="text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none roof-reveal transform translate-y-10 opacity-0">
+            Rooftop <span className="text-amber-400">Tróia.</span>
+          </h2>
+          <p className="text-zinc-400 text-lg mb-8 leading-relaxed roof-reveal transform translate-y-10 opacity-0">
+            Muito mais que um bar. O nosso Rooftop é o destino final para quem busca a melhor energia de Cabo Frio. Música vibrante, gente bonita e uma atmosfera incomparável onde a noite ganha vida de verdade.
+          </p>
+          <div className="bg-zinc-900/50 border border-zinc-700/50 rounded-2xl p-6 mb-8 roof-reveal transform translate-y-10 opacity-0">
+             <h4 className="font-bold text-white mb-4">Vantagens Exclusivas</h4>
+            <ul className="space-y-4 text-zinc-300">
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Acesso VIP ou com condições especiais para listas.</li>
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Programação semanal com os melhores DJs.</li>
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Estrutura premium para comemorações e camarotes.</li>
+            </ul>
+          </div>
+          <div className="roof-reveal transform translate-y-10 opacity-0">
+            <a href="https://lista.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-amber-400 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 w-full sm:w-auto">
+              Colocar Nome na Lista
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- PRICING ---
 const Pricing = () => (
   <section id="reservas" className="py-32 px-6">
@@ -586,6 +650,7 @@ export default function App() {
       <PromoOfTheWeek />
       <Philosophy />
       <Protocol />
+      <BoateRooftop />
       <Pricing />
       <Footer />
     </div>
