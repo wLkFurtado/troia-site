@@ -488,9 +488,9 @@ const Pricing = () => (
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Tolerância de 15 min</li>
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Acesso ao Happy Hour</li>
           </ul>
-          <button className="w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
+          <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
             Reservar Agora
-          </button>
+          </a>
         </div>
 
         <div className="bg-zinc-900 border border-amber-400 rounded-[3rem] p-12 md:-translate-y-4 shadow-2xl relative overflow-hidden">
@@ -509,9 +509,9 @@ const Pricing = () => (
               <span>Com 20 convidados: Garrafa de Vodka Smirnoff ou Espumante</span>
             </li>
           </ul>
-          <button className="w-full bg-amber-400 text-zinc-950 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300">
+          <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full bg-amber-400 text-zinc-950 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300">
             Fazer Reserva VIP
-          </button>
+          </a>
         </div>
 
         <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-10">
@@ -522,9 +522,9 @@ const Pricing = () => (
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Homens R$ 30 (consumo)</li>
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Programação semanal exclusiva</li>
           </ul>
-          <button className="w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
+          <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
             Ver Lista
-          </button>
+          </a>
         </div>
 
       </div>
