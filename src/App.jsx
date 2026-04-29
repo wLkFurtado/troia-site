@@ -54,6 +54,7 @@ const Navbar = () => {
     { href: '#localizacao', label: 'Localização' },
     { href: '#reservas', label: 'Reservas' },
     { href: '#cardapio', label: 'Cardápio' },
+    { href: 'https://lista.troiacabofrio.com.br', label: 'Lista VIP', external: true },
   ];
 
   return (
@@ -589,8 +590,8 @@ const Pricing = () => (
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Programação semanal exclusiva</li>
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Consulte a programação no Instagram</li>
           </ul>
-          <a href="https://instagram.com/troiacabofrio" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
-            Ver no Instagram
+          <a href="https://lista.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
+            Lista VIP
           </a>
         </div>
 
