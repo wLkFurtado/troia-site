@@ -51,10 +51,9 @@ const Navbar = () => {
 
   const links = [
     { href: '#espacos', label: 'Espaços' },
-    { href: '#eventos', label: 'Eventos' },
+    { href: '#localizacao', label: 'Localização' },
     { href: '#reservas', label: 'Reservas' },
     { href: '#cardapio', label: 'Cardápio' },
-    { href: 'https://lista.troiacabofrio.com.br', label: 'Lista VIP', external: true },
   ];
 
   return (
@@ -154,121 +153,78 @@ const Hero = () => {
   );
 };
 
-// --- FEATURES ---
-const Features = () => {
-  const [active, setActive] = useState(0);
-  const [typed, setTyped] = useState('');
-
-  const cards = [
-    { title: 'Bar & Restaurante', desc: 'Música ao Vivo Seg-Sáb às 20h, Dom às 19h.', icon: <Wine className="text-amber-400" /> },
-    { title: 'Alta Coquetelaria', desc: 'Drinks assinatura e clássicos perfeitos.', icon: <Sparkles className="text-amber-400" /> },
-    { title: 'Gastronomia', desc: 'Menu pensado para harmonizar com a noite.', icon: <Clock className="text-amber-400" /> },
-  ];
-
-  useEffect(() => {
-    const t = setInterval(() => setActive(p => (p + 1) % cards.length), 3000);
-    return () => clearInterval(t);
-  }, [cards.length]);
-
-  const feed = ' > ROOFTOP VIP ACESSO...\\n > MULHERES VIP | HOMENS R$ 30...\\n > PROGRAMAÇÃO NOS STORIES...\\n';
-  useEffect(() => {
-    let i = 0;
-    const t = setInterval(() => {
-      setTyped(feed.slice(0, i));
-      if (i >= feed.length) i = 0; else i++;
-    }, 80);
-    return () => clearInterval(t);
-  }, [feed]);
-
-  const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-  const today = new Date().getDay();
+// --- LOCATION & 360 TOUR ---
+const Location = () => {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: ref.current,
+        start: 'top 75%',
+        onEnter: () => gsap.to('.loc-reveal', { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out' }),
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="espacos" className="py-16 md:py-32 px-4 md:px-12 lg:px-24 bg-zinc-950">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        {/* Card 1: Shuffler */}
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-8 h-[420px] flex flex-col">
-          <h3 className="text-2xl font-bold mb-1">Térreo</h3>
-          <p className="text-zinc-500 text-sm mb-8">Bar & Restaurante</p>
-          <div className="relative flex-grow">
-            {cards.map((card, i) => {
-              const offset = (i - active + cards.length) % cards.length;
-              return (
-                <div
-                  key={card.title}
-                  className="absolute w-full bg-zinc-800 rounded-2xl p-5 flex items-start gap-4 border border-zinc-700/50 transition-all duration-700"
-                  style={{
-                    top: `${offset * 22}px`,
-                    opacity: offset === 0 ? 1 : offset === 1 ? 0.6 : 0.3,
-                    transform: `scale(${1 - offset * 0.05})`,
-                    zIndex: 3 - offset,
-                  }}
-                >
-                  <div className="p-3 bg-zinc-950/60 rounded-xl">{card.icon}</div>
-                  <div>
-                    <h4 className="font-bold">{card.title}</h4>
-                    <p className="text-sm text-zinc-400 mt-1">{card.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
+    <section id="localizacao" ref={ref} className="py-16 md:py-32 px-4 md:px-12 lg:px-24 bg-zinc-950 border-t border-zinc-900 overflow-hidden relative">
+      <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-amber-900/8 rounded-full blur-[140px] -translate-y-1/2 pointer-events-none" />
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-12 loc-reveal transform translate-y-10 opacity-0">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <MapPin className="text-amber-400" size={24} />
+            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Como Chegar</span>
           </div>
+          <h2 className="text-4xl md:text-6xl font-drama italic text-white mb-4 leading-none">
+            Onde a noite <span className="text-amber-400">acontece.</span>
+          </h2>
+          <p className="text-zinc-400 text-lg max-w-xl mx-auto">
+            Av. Assunção, 721, São Bento — Cabo Frio, RJ. Venha nos visitar e explore nosso espaço antes mesmo de chegar.
+          </p>
         </div>
 
-        {/* Card 2: Typewriter */}
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-8 h-[420px] flex flex-col">
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <h3 className="text-2xl font-bold mb-1">Lounge Rooftop</h3>
-              <p className="flex items-center gap-2 text-sm text-zinc-500">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" /> Live Feed
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Google Maps embed */}
+          <div className="loc-reveal transform translate-y-10 opacity-0">
+            <div className="rounded-[2.5rem] overflow-hidden border border-zinc-800 shadow-2xl h-[400px] lg:h-[500px]">
+              <iframe
+                title="Localização Tróia Bar Lounge Roof Top"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.0!2d-42.0156797!3d-22.8779635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9704b71a959d55%3A0x6f0a1e0805c84877!2sTr%C3%B3ia+Bar+Lounge+Roof+Top!5e0!3m2!1spt-BR!2sbr!4v1714000000000!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
-            <Crown className="text-zinc-600" />
+            <p className="text-center text-zinc-500 text-sm mt-4 font-mono">📍 Av. Assunção, 721 — São Bento, Cabo Frio - RJ</p>
           </div>
-          <div className="flex-grow bg-zinc-950 rounded-2xl p-5 border border-zinc-800 overflow-hidden">
-            <pre className="font-mono text-sm text-amber-400 whitespace-pre-wrap leading-relaxed">
-              {typed}<span className="animate-pulse">_</span>
-            </pre>
+
+          {/* 360 Tour embed */}
+          <div className="loc-reveal transform translate-y-10 opacity-0">
+            <div className="rounded-[2.5rem] overflow-hidden border border-amber-400/20 shadow-2xl h-[400px] lg:h-[500px] relative">
+              <iframe
+                title="Tour 360° Tróia Bar Lounge Roof Top"
+                src="https://www.google.com/maps/embed?pb=!4v1714000000000!6m8!1m7!1sCIHM0ogKEICAgICZ-Z_oaA!2m2!1d-22.8779635!2d-42.0156797!3f90.4!4f-0.4!5f0.7820865974627469"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute top-4 left-4">
+                <span className="bg-zinc-950/80 backdrop-blur-md text-amber-400 border border-amber-400/30 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest inline-flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  Tour 360°
+                </span>
+              </div>
+            </div>
+            <p className="text-center text-zinc-500 text-sm mt-4 font-mono">🔭 Explore nosso espaço virtualmente</p>
           </div>
         </div>
-
-        {/* Card 3: Scheduler */}
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-8 h-[420px] flex flex-col">
-          <h3 className="text-2xl font-bold mb-1">Programação</h3>
-          <p className="text-zinc-500 text-sm mb-8">Eventos & Promos Semanais</p>
-          <div className="grid grid-cols-7 gap-2 mb-8">
-            {days.map((d, i) => (
-              <div
-                key={i}
-                className={cn(
-                  'aspect-square rounded-xl flex items-center justify-center text-xs font-mono',
-                  i === today ? 'bg-amber-400 text-zinc-950 font-bold' : 'bg-zinc-800/60 text-zinc-500'
-                )}
-              >
-                {d}
-              </div>
-            ))}
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center p-4 bg-zinc-800/50 rounded-2xl border border-zinc-700/50">
-              <div className="flex items-center gap-3">
-                <Calendar size={16} className="text-amber-400" />
-                <span className="text-sm font-medium">Quarta (Rodízio)</span>
-              </div>
-              <span className="text-xs font-mono text-zinc-400">R$ 119</span>
-            </div>
-            <div className="flex justify-between items-center p-4 bg-zinc-800/50 rounded-2xl border border-zinc-700/50">
-              <div className="flex items-center gap-3">
-                <Music size={16} className="text-amber-400" />
-                <span className="text-sm font-medium">Domingo (Samba)</span>
-              </div>
-              <span className="text-xs font-mono text-zinc-400">R$ 30</span>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   );
@@ -295,10 +251,10 @@ const HappyHour = () => {
         <div className="w-full lg:w-1/2">
           <div className="flex items-center gap-3 mb-6 hh-reveal transform translate-y-10 opacity-0">
             <Wine className="text-amber-400" size={24} />
-            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Segunda a Sexta</span>
+            <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Domingo a Domingo</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none hh-reveal transform translate-y-10 opacity-0">
-            Golden <span className="text-amber-400">Hour.</span>
+            Happy <span className="text-amber-400">Hour.</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed hh-reveal transform translate-y-10 opacity-0">
             O entardecer mais exclusivo de Cabo Frio. Celebre o fim do dia com nossa alta coquetelaria e gastronomia e as melhores condições para dar o start perfeito na sua noite.
@@ -311,13 +267,16 @@ const HappyHour = () => {
               </div>
               <div>
                 <p className="text-zinc-500 text-sm mb-1">Dias</p>
-                <p className="text-xl font-bold text-white">Seg. a Sex.</p>
+                <p className="text-xl font-bold text-white">Dom. a Dom.</p>
               </div>
             </div>
             <div className="mt-6 pt-6 border-t border-zinc-800">
               <p className="text-zinc-300 font-medium text-lg mb-2">50% de desconto em todas as bebidas alcoólicas.</p>
               <p className="text-sm text-zinc-400 leading-relaxed font-mono">
                 *Exceto combos, garrafas de whisky Blue Label, garrafas de Royal Salute e carta de vinhos.
+              </p>
+              <p className="text-xs text-amber-400/70 leading-relaxed font-mono mt-3">
+                ⚠ Exceto feriados e datas especiais da casa.
               </p>
             </div>
           </div>
@@ -386,15 +345,20 @@ const PromoOfTheWeek = () => {
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed promo-reveal transform translate-y-10 opacity-0">
             Toda semana selecionamos um prato impecável do nosso cardápio com um preço exclusivíssimo. A oportunidade perfeita para vivenciar a alta gastronomia do Tróia em uma condição inesquecível.
           </p>
-          <div className="bg-zinc-900/50 border border-amber-400/20 rounded-2xl p-6 mb-8 promo-reveal transform translate-y-10 opacity-0 flex items-center justify-between">
-            <div>
-              <p className="text-zinc-500 text-sm mb-1">Qual é a surpresa desta semana?</p>
-              <p className="text-xl md:text-2xl font-bold text-amber-400">Descubra no nosso Instagram</p>
+          <div className="bg-zinc-900/50 border border-amber-400/20 rounded-2xl p-6 mb-8 promo-reveal transform translate-y-10 opacity-0">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-zinc-500 text-sm mb-1">Qual é a surpresa desta semana?</p>
+                <p className="text-xl md:text-2xl font-bold text-amber-400">Descubra no nosso Instagram</p>
+              </div>
+              <div className="text-right hidden sm:block">
+                <p className="text-zinc-400 text-sm mb-1">Promoção válida:</p>
+                <p className="text-white font-medium">Segunda a Sexta</p>
+              </div>
             </div>
-            <div className="text-right hidden sm:block">
-              <p className="text-zinc-400 text-sm mb-1">Promoção válida:</p>
-              <p className="text-white font-medium">Segunda a Sexta</p>
-            </div>
+            <p className="text-xs text-amber-400/70 leading-relaxed font-mono border-t border-zinc-800 pt-4">
+              ⚠ Exceto feriados e datas especiais da casa.
+            </p>
           </div>
           <div className="promo-reveal transform translate-y-10 opacity-0">
             <a href="https://instagram.com/troiacabofrio" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-amber-400 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300">
@@ -474,9 +438,9 @@ const Protocol = () => {
   }, []);
 
   const steps = [
-    { n: '01', title: 'Chegada', desc: 'Recepção VIP. Reservas até as 19h com 15 min de tolerância. Aniversariantes ganham Welcome Drink.', icon: <Clock size={36} /> },
-    { n: '02', title: 'Imersão', desc: 'Happy Hour de dom a dom (16h–20h). Gastronomia e alta coquetelaria no Térreo.', icon: <Wine size={36} /> },
-    { n: '03', title: 'Ápice', desc: 'O Rooftop abre. Energia total. Sexta e Sábado: a noite mais vibrante de Cabo Frio.', icon: <Sparkles size={36} /> },
+    { n: '01', title: 'Chegada', desc: 'Recepção VIP. Reservas até as 19h com 15 min de tolerância. Aniversariantes ganham Welcome Drink. Consulte disponibilidade antes de vir.', icon: <Clock size={36} /> },
+    { n: '02', title: 'Imersão', desc: 'Happy Hour de dom a dom (16h–20h). Gastronomia e alta coquetelaria no Térreo. Exceto feriados e datas especiais.', icon: <Wine size={36} /> },
+    { n: '03', title: 'Ápice', desc: 'O Rooftop abre. Energia total. Segunda, Sexta e Sábado: a noite mais vibrante de Cabo Frio.', icon: <Sparkles size={36} /> },
   ];
 
   return (
@@ -556,14 +520,15 @@ const BoateRooftop = () => {
           <div className="bg-zinc-900/50 border border-zinc-700/50 rounded-2xl p-6 mb-8 roof-reveal transform translate-y-10 opacity-0">
              <h4 className="font-bold text-white mb-4">Vantagens Exclusivas</h4>
             <ul className="space-y-4 text-zinc-300">
-              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Acesso VIP ou com condições especiais para listas.</li>
               <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Programação semanal com os melhores DJs.</li>
               <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Estrutura premium para comemorações e camarotes.</li>
+              <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Abre Segunda, Sexta e Sábado. Confira a programação no Instagram.</li>
             </ul>
           </div>
           <div className="roof-reveal transform translate-y-10 opacity-0">
-            <a href="https://lista.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-amber-400 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 w-full sm:w-auto">
-              Colocar Nome na Lista
+            <a href="https://instagram.com/troiacabofrio" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-amber-400 text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 w-full sm:w-auto">
+              <Instagram size={20} />
+              Consultar no Instagram
             </a>
           </div>
         </div>
@@ -748,7 +713,7 @@ export default function App() {
       <div className="noise-overlay" />
       <Navbar />
       <Hero />
-      <Features />
+      <Location />
       <Cardapio />
       <HappyHour />
       <PromoOfTheWeek />
