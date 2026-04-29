@@ -583,14 +583,14 @@ const Pricing = () => (
 
         <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-10">
           <h3 className="text-2xl font-bold mb-2">Lounge Rooftop</h3>
-          <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">Acesso à nossa Boate</p>
+          <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">A noite mais vibrante de Cabo Frio</p>
           <ul className="space-y-4 mb-8 text-sm text-zinc-300">
-            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Mulheres VIP</li>
-            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Homens R$ 30 (consumo)</li>
+            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Abre Segunda, Sexta e Sábado</li>
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Programação semanal exclusiva</li>
+            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Consulte a programação no Instagram</li>
           </ul>
-          <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
-            Ver Lista
+          <a href="https://instagram.com/troiacabofrio" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
+            Ver no Instagram
           </a>
         </div>
 
