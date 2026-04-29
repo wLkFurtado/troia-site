@@ -702,7 +702,7 @@ const Footer = () => (
     </div>
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between text-xs text-zinc-600 font-mono">
       <p>© {new Date().getFullYear()} TRÓIA EXPERIÊNCIA.</p>
-      <p>Desenvolvido para encantar.</p>
+      <p>Desenvolvido por <a href="https://growave.com.br" target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">Growave</a>.</p>
     </div>
   </footer>
 );
