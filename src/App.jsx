@@ -208,7 +208,7 @@ const Location = () => {
             <div className="rounded-[2.5rem] overflow-hidden border border-amber-400/20 shadow-2xl h-[400px] lg:h-[500px] relative">
               <iframe
                 title="Tour 360° Tróia Bar Lounge Roof Top"
-                src="https://www.google.com/maps/embed?pb=!4v1714000000000!6m8!1m7!1sCIHM0ogKEICAgICZ-Z_oaA!2m2!1d-22.8779635!2d-42.0156797!3f90.4!4f-0.4!5f0.7820865974627469"
+                src="https://www.google.com/maps/embed?pb=!4v1714000000000!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ1otZV9zNlFF!2m2!1d-22.8779635!2d-42.0156797!3f267.24!4f0!5f0.7820865974627469"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
