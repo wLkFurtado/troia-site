@@ -642,7 +642,7 @@ const Cardapio = () => {
             Nosso <span className="text-amber-400">Cardápio.</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed menu-reveal transform translate-y-10 opacity-0">
-            Descubra uma curadoria gastronômica pensada para elevar sua experiência. De petiscos exclusivos harmonizados perfeitamente com nossa alta coquetelaria autoral.
+            Descubra uma curadoria gastronômica pensada para elevar sua experiência. De cortes nobres a petiscos exclusivos, harmonizados perfeitamente com nossa alta coquetelaria autoral.
           </p>
           <div className="bg-zinc-900/50 border border-zinc-700/50 rounded-2xl p-6 mb-8 menu-reveal transform translate-y-10 opacity-0">
              <h4 className="font-bold text-white mb-4">Experiência Sensorial</h4>
