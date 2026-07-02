@@ -410,69 +410,7 @@ const Philosophy = () => {
   );
 };
 
-// --- PROTOCOL ---
-const Protocol = () => {
-  const ref = useRef(null);
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray('.proto-card');
-      cards.forEach((card, i) => {
-        if (i === cards.length - 1) return;
-        ScrollTrigger.create({
-          trigger: card,
-          start: 'top 8%',
-          end: 'bottom top',
-          scrub: true,
-          pin: true,
-          pinSpacing: false,
-          onUpdate: (self) => {
-            gsap.set(card, {
-              scale: 1 - self.progress * 0.08,
-              opacity: 1 - self.progress * 0.5,
-              filter: `blur(${self.progress * 12}px)`,
-            });
-          },
-        });
-      });
-    }, ref);
-    return () => ctx.revert();
-  }, []);
 
-  const steps = [
-    { n: '01', title: 'Chegada', desc: 'Recepção VIP. Reservas até as 19h com 15 min de tolerância. Aniversariantes ganham Welcome Drink. Consulte disponibilidade antes de vir.', icon: <Clock size={36} /> },
-    { n: '02', title: 'Imersão', desc: 'Happy Hour de dom a dom (16h–20h). Gastronomia e alta coquetelaria no Térreo. Exceto feriados e datas especiais.', icon: <Wine size={36} /> },
-    { n: '03', title: 'Ápice', desc: 'O Lounge Rooftop abre. Energia total. Segunda, Sexta e Sábado: a noite mais vibrante de Cabo Frio.', icon: <Sparkles size={36} /> },
-  ];
-
-  return (
-    <section ref={ref} className="py-32 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-24">
-          <h2 className="text-5xl font-drama italic text-amber-400 mb-3">A Jornada</h2>
-          <p className="text-zinc-500 tracking-widest font-mono text-sm">O PROTOCOLO TRÓIA</p>
-        </div>
-        {steps.map((s) => (
-          <div
-            key={s.n}
-            className="proto-card w-full min-h-[55vh] bg-zinc-900 border border-zinc-800 rounded-[3rem] p-12 mb-8 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden shadow-2xl"
-          >
-            <div className="absolute top-0 right-0 w-72 h-72 bg-amber-400/5 rounded-bl-full blur-3xl pointer-events-none" />
-            <div className="flex-shrink-0 w-28 h-28 rounded-full border border-zinc-700/60 flex items-center justify-center bg-zinc-950/60 text-amber-400 relative">
-              {s.icon}
-              <span className="absolute -top-3 -left-3 text-[10px] font-mono text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded-full border border-zinc-800">
-                PASSO_{s.n}
-              </span>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold mb-4">{s.title}</h3>
-              <p className="text-xl text-zinc-400 leading-relaxed max-w-lg">{s.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
 
 // --- BOATE ROOFTOP ---
 const BoateRooftop = () => {
@@ -719,7 +657,7 @@ export default function App() {
       <HappyHour />
       <PromoOfTheWeek />
       <Philosophy />
-      <Protocol />
+
       <BoateRooftop />
       <Pricing />
       <Footer />
