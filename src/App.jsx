@@ -488,11 +488,10 @@ const Pricing = () => (
 
         <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-10">
           <h3 className="text-2xl font-bold mb-2">Reserva de Mesa</h3>
-          <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">Garantia de conforto no Térreo</p>
+          <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">Reserva de mesa convencional bar e restaurante</p>
           <ul className="space-y-4 mb-8 text-sm text-zinc-300">
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Válido até as 19h</li>
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Tolerância de 15 min</li>
-            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Acesso ao Happy Hour</li>
           </ul>
           <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
             Reservar Agora
