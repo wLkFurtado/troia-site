@@ -519,8 +519,12 @@ const Pricing = () => (
           <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">A noite mais vibrante de Cabo Frio</p>
           <ul className="space-y-4 mb-8 text-sm text-zinc-300">
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Abre Segunda, Sexta e Sábado</li>
+            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Aniversariante VIP a noite toda</li>
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Programação semanal exclusiva</li>
-            <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Consulte a programação no Instagram</li>
+            <li className="flex gap-3 items-start">
+              <Crown size={16} className="text-amber-400 flex-shrink-0 mt-0.5" />
+              <span>Com 20 convidados: Garrafa de Vodka Smirnoff ou Espumante</span>
+            </li>
           </ul>
           <a href="https://lista.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full py-4 rounded-full border border-zinc-700 font-medium hover:border-amber-400 hover:text-amber-400 transition-all duration-300">
             Lista VIP
