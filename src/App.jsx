@@ -139,7 +139,7 @@ const Hero = () => {
           />
         </h1>
         <p className="hero-sub max-w-xl text-base md:text-lg text-zinc-400 font-light mb-8 leading-relaxed opacity-0">
-          Bar, Restaurante e o Rooftop mais exclusivo de Cabo Frio. Gastronomia, coquetelaria e energia em um só lugar.
+          Bar, Restaurante e o Lounge Rooftop mais exclusivo de Cabo Frio. Gastronomia, coquetelaria e energia em um só lugar.
         </p>
         <div className="hero-cta opacity-0">
           <a
@@ -441,7 +441,7 @@ const Protocol = () => {
   const steps = [
     { n: '01', title: 'Chegada', desc: 'Recepção VIP. Reservas até as 19h com 15 min de tolerância. Aniversariantes ganham Welcome Drink. Consulte disponibilidade antes de vir.', icon: <Clock size={36} /> },
     { n: '02', title: 'Imersão', desc: 'Happy Hour de dom a dom (16h–20h). Gastronomia e alta coquetelaria no Térreo. Exceto feriados e datas especiais.', icon: <Wine size={36} /> },
-    { n: '03', title: 'Ápice', desc: 'O Rooftop abre. Energia total. Segunda, Sexta e Sábado: a noite mais vibrante de Cabo Frio.', icon: <Sparkles size={36} /> },
+    { n: '03', title: 'Ápice', desc: 'O Lounge Rooftop abre. Energia total. Segunda, Sexta e Sábado: a noite mais vibrante de Cabo Frio.', icon: <Sparkles size={36} /> },
   ];
 
   return (
@@ -513,10 +513,10 @@ const BoateRooftop = () => {
             <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">Boate & Lounge</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-drama italic text-white mb-6 leading-none roof-reveal transform translate-y-10 opacity-0">
-            Rooftop <span className="text-amber-400">Tróia.</span>
+            Lounge Rooftop <span className="text-amber-400">Tróia.</span>
           </h2>
           <p className="text-zinc-400 text-lg mb-8 leading-relaxed roof-reveal transform translate-y-10 opacity-0">
-            Muito mais que um bar. O nosso Rooftop é o destino final para quem busca a melhor energia de Cabo Frio. Música vibrante, gente bonita e uma atmosfera incomparável onde a noite ganha vida de verdade.
+            Muito mais que um bar. O nosso Lounge Rooftop é o destino final para quem busca a melhor energia de Cabo Frio. Música vibrante, gente bonita e uma atmosfera incomparável onde a noite ganha vida de verdade.
           </p>
           <div className="bg-zinc-900/50 border border-zinc-700/50 rounded-2xl p-6 mb-8 roof-reveal transform translate-y-10 opacity-0">
              <h4 className="font-bold text-white mb-4">Vantagens Exclusivas</h4>
@@ -570,7 +570,7 @@ const Pricing = () => (
           <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">Seu dia merece ser inesquecível</p>
           <ul className="space-y-4 mb-10 text-zinc-200">
             <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Mesa Reservada</li>
-            <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> VIP a noite toda no Rooftop</li>
+            <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> VIP a noite toda no Lounge Rooftop</li>
             <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Welcome Drink no Térreo</li>
             <li className="flex gap-3 items-start">
               <Crown size={18} className="text-amber-400 flex-shrink-0 mt-0.5" />
