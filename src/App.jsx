@@ -292,7 +292,7 @@ const HappyHour = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
             <div className="absolute top-6 right-6">
               <span className="bg-zinc-950/80 backdrop-blur-md text-amber-400 border border-amber-400/30 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest inline-block">
-                Térreo Lounge
+                Bar e Restaurante
               </span>
             </div>
           </div>
@@ -503,16 +503,11 @@ const Pricing = () => (
           <span className="inline-block bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wider">
             Aniversariante ✦
           </span>
-          <h3 className="text-3xl font-bold mb-2">Comemore no Tróia</h3>
+          <h3 className="text-3xl font-bold mb-2">Comemore no Tróia Bar e Restaurante</h3>
           <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">Seu dia merece ser inesquecível</p>
           <ul className="space-y-4 mb-10 text-zinc-200">
             <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Mesa Reservada</li>
-            <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> VIP a noite toda no Lounge Rooftop</li>
-            <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Welcome Drink no Térreo</li>
-            <li className="flex gap-3 items-start">
-              <Crown size={18} className="text-amber-400 flex-shrink-0 mt-0.5" />
-              <span>Com 20 convidados: Garrafa de Vodka Smirnoff ou Espumante</span>
-            </li>
+            <li className="flex gap-3 items-start"><CheckCircle2 size={18} className="text-amber-400 flex-shrink-0 mt-0.5" /> Welcome Drink no Bar e Restaurante</li>
           </ul>
           <a href="https://reservas.troiacabofrio.com.br" target="_blank" rel="noreferrer" className="block text-center w-full bg-amber-400 text-zinc-950 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300">
             Fazer Reserva VIP
