@@ -515,7 +515,7 @@ const Pricing = () => (
         </div>
 
         <div className="bg-zinc-900/60 border border-zinc-800 rounded-[2.5rem] p-10">
-          <h3 className="text-2xl font-bold mb-2">Lounge Rooftop</h3>
+          <h3 className="text-2xl font-bold mb-2">Comemore seu aniversário no <span className="uppercase">Lounge Rooftop</span></h3>
           <p className="text-zinc-400 text-sm mb-6 pb-6 border-b border-zinc-800">A noite mais vibrante de Cabo Frio</p>
           <ul className="space-y-4 mb-8 text-sm text-zinc-300">
             <li className="flex gap-3 items-center"><CheckCircle2 size={16} className="text-amber-400 flex-shrink-0" /> Abre Segunda, Sexta e Sábado</li>
